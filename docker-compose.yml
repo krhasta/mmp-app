@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: mmp_app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "./scripts/wait-for-it.sh db:5432 -- npm run dev"
+
+  db:
+    image: postgres:15
+    container_name: mmp_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: mmp
+      POSTGRES_PASSWORD: 123123
+      POSTGRES_DB: mmp_db
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+# 이 부분은 제거해도 됩니다. 이름 있는 볼륨 안 씀
+# volumes:
+#   postgres_data:

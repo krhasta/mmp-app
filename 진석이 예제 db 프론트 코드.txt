@@ -1,0 +1,99 @@
+  const [productId, setProductId] = useState('');
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = async () => {
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const response = await fetch(`/api/digikey?productId=${productId}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.error || 'An error occurred');
+      } else {
+        const data = await response.json();
+        setResult(data);
+      }
+    } catch (err) {
+      setError('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const [type, setType] = useState('default');
+
+  const handleSave = async () => {
+    if (!result) {
+      setError('No result to save');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/digikey', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ result, type }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.error || 'An error occurred while saving');
+      } else {
+        alert('Data saved successfully');
+      }
+    } catch (err) {
+      setError('Failed to save data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+    // <div className="p-5">
+    //   <h1 className="text-2xl font-bold mb-4">Product Search</h1>
+    //   <div className="flex items-center gap-4 mb-4">
+    //     <input
+    //       type="text"
+    //       placeholder="Enter Product ID"
+    //       value={productId}
+    //       onChange={(e) => setProductId(e.target.value)}
+    //       className="p-2 border border-gray-300 rounded w-80"
+    //     />
+    //     <button onClick={handleSearch} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+    //       Search
+    //     </button>
+    //     <button onClick={handleSave} className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+    //       Save
+    //     </button>
+    //   </div>
+    //   <div className="flex items-center gap-2 mb-4">
+    //     {['A', 'B', 'C', 'D'].map((option) => (
+    //       <button
+    //         key={option}
+    //         onClick={() => setType(option)}
+    //         className={`px-4 py-2 rounded ${
+    //           type === option ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'
+    //         } hover:bg-blue-600`}
+    //       >
+    //         {option}
+    //       </button>
+    //     ))}
+    //   </div>
+    //   {loading && <p className="text-gray-500">Loading...</p>}
+    //   {error && <p className="text-red-500">Error: {error}</p>}
+    //   {result && (
+    //     <div>
+    //       <pre className="bg-gray-800 p-4 rounded mt-4 overflow-auto text-white">{JSON.stringify(result, null, 2)}</pre>
+    //     </div>
+    //   )}
+    // </div>

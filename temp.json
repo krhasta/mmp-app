@@ -1,0 +1,236 @@
+{
+    "SearchLocaleUsed": {
+        "Site": "kr",
+        "Language": "en",
+        "Currency": "KRW"
+    },
+    "Product": {
+        "Description": {
+            "ProductDescription": "IC MCU 32BIT 512KB FLSH 144UFBGA",
+            "DetailedDescription": "ARM® Cortex®-M7 STM32H7 Microcontroller IC 32-Bit 550MHz 512KB (512K x 8) FLASH 144-UFBGA (7x7)"
+        },
+        "Manufacturer": {
+            "Id": 497,
+            "Name": "STMicroelectronics"
+        },
+        "ManufacturerProductNumber": "STM32H723ZEI6",
+        "UnitPrice": 10863.23918,
+        "ProductUrl": "https://www.digikey.kr/en/products/detail/stmicroelectronics/STM32H723ZEI6/18085546",
+        "DatasheetUrl": null,
+        "PhotoUrl": null,
+        "ProductVariations": [
+            {
+                "DigiKeyProductNumber": "497-STM32H723ZEI6-ND",
+                "PackageType": {
+                    "Id": 3,
+                    "Name": "Bulk"
+                },
+                "StandardPricing": [
+                    {
+                        "BreakQuantity": 2496,
+                        "UnitPrice": 10863.23918,
+                        "TotalPrice": 27114644.99328
+                    }
+                ],
+                "MyPricing": [],
+                "MarketPlace": false,
+                "TariffActive": false,
+                "Supplier": {
+                    "Id": 497,
+                    "Name": "STMicroelectronics"
+                },
+                "QuantityAvailableforPackageType": 0,
+                "MaxQuantityForDistribution": 999999999,
+                "MinimumOrderQuantity": 2496,
+                "StandardPackage": 2496,
+                "DigiReelFee": 0.0
+            }
+        ],
+        "QuantityAvailable": 0,
+        "ProductStatus": {
+            "Id": 0,
+            "Status": "Active"
+        },
+        "BackOrderNotAllowed": false,
+        "NormallyStocking": false,
+        "Discontinued": false,
+        "EndOfLife": false,
+        "Ncnr": false,
+        "PrimaryVideoUrl": "https://www.digikey.com/api/videos/videoplayer/smallplayer/6327693257112",
+        "Parameters": [
+            {
+                "ParameterId": 506,
+                "ParameterText": "Core Processor",
+                "ParameterType": "String",
+                "ValueId": "314903",
+                "ValueText": "ARM® Cortex®-M7"
+            },
+            {
+                "ParameterId": 689,
+                "ParameterText": "Core Size",
+                "ParameterType": "String",
+                "ValueId": "188239",
+                "ValueText": "32-Bit"
+            },
+            {
+                "ParameterId": 143,
+                "ParameterText": "Speed",
+                "ParameterType": "String",
+                "ValueId": "243218",
+                "ValueText": "550MHz"
+            },
+            {
+                "ParameterId": 1113,
+                "ParameterText": "Connectivity",
+                "ParameterType": "String",
+                "ValueId": "800769",
+                "ValueText": "CANbus, Ethernet, I2C, IrDA, LINbus, SAI, SmartCard, SPDIF, SPI, UART/USART, USB OTG"
+            },
+            {
+                "ParameterId": 1114,
+                "ParameterText": "Peripherals",
+                "ParameterType": "String",
+                "ValueId": "323312",
+                "ValueText": "Brown-out Detect/Reset, DMA, LCD, POR, PWM, WDT"
+            },
+            {
+                "ParameterId": 2208,
+                "ParameterText": "Number of I/O",
+                "ParameterType": "Double",
+                "ValueId": "114",
+                "ValueText": "114"
+            },
+            {
+                "ParameterId": 155,
+                "ParameterText": "Program Memory Size",
+                "ParameterType": "String",
+                "ValueId": "239335",
+                "ValueText": "512KB (512K x 8)"
+            },
+            {
+                "ParameterId": 290,
+                "ParameterText": "Program Memory Type",
+                "ParameterType": "String",
+                "ValueId": "347758",
+                "ValueText": "FLASH"
+            },
+            {
+                "ParameterId": 291,
+                "ParameterText": "EEPROM Size",
+                "ParameterType": "String",
+                "ValueId": "1",
+                "ValueText": "-"
+            },
+            {
+                "ParameterId": 156,
+                "ParameterText": "RAM Size",
+                "ParameterType": "String",
+                "ValueId": "491763",
+                "ValueText": "564K x 8"
+            },
+            {
+                "ParameterId": 1112,
+                "ParameterText": "Voltage - Supply (Vcc/Vdd)",
+                "ParameterType": "String",
+                "ValueId": "56352",
+                "ValueText": "1.62V ~ 3.6V"
+            },
+            {
+                "ParameterId": 519,
+                "ParameterText": "Data Converters",
+                "ParameterType": "String",
+                "ValueId": "500840",
+                "ValueText": "A/D 17x12b, 34x16b; D/A 2x12b"
+            },
+            {
+                "ParameterId": 283,
+                "ParameterText": "Oscillator Type",
+                "ParameterType": "String",
+                "ValueId": "345714",
+                "ValueText": "External, Internal"
+            },
+            {
+                "ParameterId": 252,
+                "ParameterText": "Operating Temperature",
+                "ParameterType": "String",
+                "ValueId": "212621",
+                "ValueText": "-40°C ~ 85°C (TA)"
+            },
+            {
+                "ParameterId": 69,
+                "ParameterText": "Mounting Type",
+                "ParameterType": "String",
+                "ValueId": "409393",
+                "ValueText": "Surface Mount"
+            },
+            {
+                "ParameterId": 1291,
+                "ParameterText": "Supplier Device Package",
+                "ParameterType": "String",
+                "ValueId": "95692",
+                "ValueText": "144-UFBGA (7x7)"
+            },
+            {
+                "ParameterId": 16,
+                "ParameterText": "Package / Case",
+                "ParameterType": "String",
+                "ValueId": "95689",
+                "ValueText": "144-UFBGA"
+            }
+        ],
+        "BaseProductNumber": {
+            "Id": 647527,
+            "Name": "STM32H723"
+        },
+        "Category": {
+            "CategoryId": 32,
+            "ParentId": 0,
+            "Name": "Integrated Circuits (ICs)",
+            "ProductCount": 0,
+            "NewProductCount": 0,
+            "ImageUrl": "https://www.digikey.kr//mm.digikey.com/Volume0/opasdata/d220001/derivates/3/010/153/598/8-SOIC%2CM8_tmb.jpg",
+            "SeoDescription": "Integrated circuits combine a large number of transistors and other elementary electronic components in miniaturized form into a single physical device, that is designed for a specific purpose or function and characterized by its performance of that function rather than by the behavior of its component pieces. Examples include microcontrollers, battery monitors and charge controllers, analog to digital converters, operational amplifiers, logic gates, voltage regulators, gate drivers, motro controllers, and others.",
+            "ChildCategories": [
+                {
+                    "CategoryId": 2012,
+                    "ParentId": 32,
+                    "Name": "Embedded",
+                    "ProductCount": 0,
+                    "NewProductCount": 0,
+                    "ImageUrl": "https://www.digikey.kr//mm.digikey.com/Volume0/opasdata/d220001/derivates/3/100/433/524/MFG_MK21DX128VLK5_tmb.jpg",
+                    "SeoDescription": "Embedded systems perform a specific task via software within various applications. Included in this category are programmable logic devices (PLDs), complex programmable logic devices (CPLDs), digital signal processors (DSPs), field programmable gate arrays (FPGAs), microcontollers or microprocessors, system-on-chip (SoC), and more.",
+                    "ChildCategories": [
+                        {
+                            "CategoryId": 685,
+                            "ParentId": 2012,
+                            "Name": "Microcontrollers",
+                            "ProductCount": 0,
+                            "NewProductCount": 0,
+                            "ImageUrl": "https://www.digikey.kr//mm.digikey.com/Volume0/opasdata/d220001/derivates/3/010/116/683/28-PDip_tmb.jpg",
+                            "SeoDescription": "Microcontroller products are relatively complex, user-programmable digital logic devices. Closely related to devices considered microprocessors, the distinction between the two reduces largely to the manufacturer's choice of noun, though by tradition microcontrollers integrate working memory, are more likely to incorporate mixed-signal peripherals and tend to be used with simpler software paradigms oriented toward repetitive execution of a predefined series of tasks.",
+                            "ChildCategories": []
+                        }
+                    ]
+                }
+            ]
+        },
+        "DateLastBuyChance": null,
+        "ManufacturerLeadWeeks": "15",
+        "ManufacturerPublicQuantity": 0,
+        "Series": {
+            "Id": 60860,
+            "Name": "STM32H7"
+        },
+        "ShippingInfo": null,
+        "Classifications": {
+            "ReachStatus": "REACH Unaffected",
+            "RohsStatus": "ROHS3 Compliant",
+            "MoistureSensitivityLevel": "3  (168 Hours)",
+            "ExportControlClassNumber": null,
+            "HtsusCode": "8542.31.0025"
+        },
+        "OtherNames": [
+            "497-STM32H723ZEI6"
+        ]
+    }
+}

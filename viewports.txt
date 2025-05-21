@@ -1,0 +1,8 @@
+2560px x 1271px
+Screen Size: 2560px x 1440px
+
+1920px x 911px
+Screen Size: 1920px x 1080px
+
+1536px x 695px
+Screeen Size: 1536px x 864px
