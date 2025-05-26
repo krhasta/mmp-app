@@ -1,130 +1,129 @@
 'use client';
 import Panel from '@/component/Panel';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 export default function Register() {
-  const [selectedSource, setSelectedSource] = useState<string>();
-  const [partNumber, setPartNumber] = useState<string>('');
-  const [productInfo, setProductInfo] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [productNumber, setProductNumber] = useState<string | null>(null);
 
-  function getElementClassName(sourceId: string) {
-    const baseSelectClass = 'w-[150px] h-[70px] p-[15px] bg-gray-700 rounded-2xl cursor-pointer';
-    const selectedClass = 'ring-2 ring-blue-500 bg-gray-600';
-    const hoverClasses = 'hover:bg-gray-600';
+  const handleMenuSelect = (menu: string) => {
+    setSelectedMenu(menu);
+    setIsDropdownOpen(false);
+  };
 
-    return `${baseSelectClass} ${selectedSource === sourceId ? selectedClass : hoverClasses}`;
-  }
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-  // API 호출 함수
-  const handleSearch = async () => {
-    if (!selectedSource) {
-      setError('제품 소스를 선택해주세요');
-      return;
-    }
-
-    if (!partNumber.trim()) {
-      setError('제품 번호를 입력해주세요');
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // 내부 API 라우트 호출
-      const response = await fetch(`/api/digikey?partNumber=${encodeURIComponent(partNumber)}`);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || '제품 정보를 가져오는데 실패했습니다');
-      }
-
-      const data = await response.json();
-      setProductInfo({
-        source: 'digikey',
-        name: partNumber,
-        data: data,
-      });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다');
-      setProductInfo(null);
-    } finally {
-      setIsLoading(false);
+  // 검색 버튼 클릭 핸들러 (예시)
+  const handleSearch = () => {
+    if (productNumber && selectedMenu) {
+      console.log(`Search for: ${productNumber} from ${selectedMenu}`);
+      // 여기에 실제 API 호출 로직 추가
+    } else if (productNumber) {
+      console.log(`Search for: ${productNumber} (no vendor selected, or for manual entry connection)`);
+      // 공급업체 없이 검색 또는 다른 로직
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
-      <div className="w-[1000px] text-[25px] font-bold">제품 등록</div>
-      <div className="w-[1000px] h-[650px] shadow-lg flex items-center justify-between rounded-[30px] bg-[#303030] p-[12px]">
-        <div className="h-[650px] py-[12px] flex-1">
-          <div className="flex flex-col mr-[12px] items-center justify-between">
-            <div className="flex items-center">
-              <img
-                className={getElementClassName('digikey')}
-                onClick={() => setSelectedSource('digikey')}
-                src="/imgs/logo-digikey.svg"
-                alt="Digi-Key"
-              />
-              <img
-                className={`${getElementClassName('mouser')} mx-[50px]`}
-                onClick={() => setSelectedSource('mouser')}
-                src="/imgs/logo-mouser.png"
-                alt="Mouser"
-              />
-              <div
-                className={`${getElementClassName('manual')} flex items-center justify-center text-center text-[25px]`}
-                onClick={() => setSelectedSource('manual')}
+      <div className="w-[1000px] text-[25px] font-bold text-white mb-3">
+        {' '}
+        {/* text-white, mb-3 추가 */}
+        제품 등록
+      </div>
+      <div className="w-[1000px] h-[650px] shadow-lg flex items-start justify-between rounded-[30px] bg-[#303030] p-[12px]">
+        {/* 왼쪽 패널 전체: 세로 Flex 컨테이너로 설정 */}
+        <div className="w-full h-full flex flex-col text-white">
+          {' '}
+          {/* 1. flex flex-col 추가, text-white 기본 적용 */}
+          {/* Digikey or Mouser 선택 */}
+          <div className="relative w-full flex-shrink-0">
+            {' '}
+            {/* 2. flex-shrink-0 추가 */}
+            <button
+              className="w-full bg-[#444] text-white py-3 px-4 rounded-lg flex justify-between items-center focus:outline-none"
+              onClick={toggleDropdown}
+            >
+              {selectedMenu || '메뉴 선택'}
+              <svg
+                className={`w-4 h-4 ml-2 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                수동 입력
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute z-10 mt-2 w-full bg-[#444] rounded-lg shadow-lg">
+                {['Digikey', 'Mouser'].map((menu) => (
+                  <div
+                    key={menu}
+                    onClick={() => handleMenuSelect(menu)}
+                    className="px-4 py-3 text-white hover:bg-[#666] cursor-pointer rounded-lg"
+                  >
+                    {menu}
+                  </div>
+                ))}
               </div>
+            )}
+          </div>
+          {/* 제품 번호 입력 섹션 - 항상 표시 */}
+          <div className="mt-[36px] flex-shrink-0">
+            {' '}
+            {/* 2. flex-shrink-0 추가 */}
+            {/* 레이블 텍스트는 selectedMenu에 따라 변경 */}
+            {selectedMenu && ['Digikey', 'Mouser'].includes(selectedMenu)
+              ? `${selectedMenu} 제품 번호 입력`
+              : '제품 번호 입력'}
+            <div className="w-full flex justify-between items-center mt-2">
+              {' '}
+              {/* mt-2 추가 */}
+              <div className="flex-1 bg-[#444] text-white py-3 px-4 rounded-lg flex items-center focus-within:ring-2 focus-within:ring-blue-500 mr-2">
+                <input
+                  type="text"
+                  className="w-full bg-transparent outline-none text-white placeholder-gray-400"
+                  placeholder={
+                    selectedMenu && ['Digikey', 'Mouser'].includes(selectedMenu)
+                      ? `${selectedMenu} 제품 번호를 입력하세요.`
+                      : '검색하실 제품명을 입력하세요.' // 메뉴 미선택 시 플레이스홀더
+                  }
+                  value={productNumber || ''}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setProductNumber(e.target.value)}
+                />
+              </div>
+              <button
+                className="w-auto px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg flex justify-center items-center text-center focus:outline-none transition-all duration-150 ease-in-out active:scale-98 active:brightness-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={handleSearch}
+                disabled={!productNumber || !selectedMenu} // 선택된 메뉴와 제품번호가 모두 있어야 활성화
+              >
+                검색
+              </button>
             </div>
           </div>
-          <div className="flex items-center justify-evenly mt-[40px]">
-            <input
-              className="w-[500px] h-[40px] mt-1 bg-[#b4b4b4] rounded-[10px] px-3 text-black"
-              type="text"
-              placeholder="제품 번호를 입력해주세요!"
-              value={partNumber}
-              onChange={(e) => setPartNumber(e.target.value)}
-            />
-            <button
-              className="w-[100px] h-[40px] bg-[#b4b4b4] rounded-[10px]"
-              onClick={handleSearch}
-              disabled={isLoading}
-            >
-              {isLoading ? '로딩 중...' : '확인'}
-            </button>
+          {/* 제품 수동 등록 섹션 */}
+          <div className="mt-[36px] flex flex-col flex-1 min-h-0">
+            {' '}
+            {/* 3. flex-1, min-h-0, 일관된 mt-[36px] */}
+            제품 수동 등록
+            <div className="w-full flex-1 mt-2 bg-[#444] text-white py-3 px-4 rounded-lg flex flex-col focus:outline-none ">
+              {' '}
+              {/* 4. 내부 div가 남은 공간 채우도록 flex-1, mt-2 */}
+              <textarea
+                className="w-full h-full flex-1 bg-transparent text-white outline-none resize-none placeholder-gray-500 p-1"
+                placeholder="제품 정보를 수동으로 입력하세요..."
+              ></textarea>
+            </div>
           </div>
         </div>
-        <Panel>
-          {isLoading && <p>데이터를 불러오는 중입니다...</p>}
-          {error && <p className="text-red-500">{error}</p>}
-          {!isLoading &&
-            !error &&
-            !productInfo &&
-            !selectedSource &&
-            '좌측에서 제품 소스를 선택하고 제품 번호를 입력해주세요!'}
-          {!isLoading && !error && !productInfo && selectedSource && '제품 번호를 입력하고 확인 버튼을 눌러주세요!'}
-          {!isLoading && !error && productInfo && (
-            <div>
-              <p>
-                <strong>소스:</strong> {productInfo.source}
-              </p>
-              <p>
-                <strong>제품 번호:</strong> {productInfo.name}
-              </p>
-              <p>
-                <strong>데이터:</strong>
-              </p>
-              <pre className="whitespace-pre-wrap break-all bg-gray-800 p-2 rounded text-sm">
-                {JSON.stringify(productInfo.data, null, 2)}
-              </pre>
-            </div>
-          )}
-        </Panel>
+
+        {/* 우측 제품 정보 확인 섹션 */}
+        <div className="h-full ml-[12px]">
+          <Panel />
+        </div>
       </div>
     </div>
   );
